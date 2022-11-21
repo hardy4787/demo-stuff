@@ -1,0 +1,11 @@
+﻿version: "3.2"
+services:
+
+  sql-server-db:
+    container_name: sql-server-db
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports:
+      - "14333:1433"
+    environment:
+      SA_PASSWORD: "pa55w0rd!"
+      ACCEPT_EULA: "Y"
