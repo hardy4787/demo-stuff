@@ -1,0 +1,52 @@
+﻿using Hangfire;
+using HangfireDemo.Services;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace HangfireDemo.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class JobTestController : ControllerBase
+    {
+        private readonly IJobTestService _jobTestService;
+        private readonly IBackgroundJobClient _backgroundJobClient;
+        private readonly IRecurringJobManager _recurringJobManager;
+
+        public JobTestController(IJobTestService jobTestService, IBackgroundJobClient backgroundJobClient, IRecurringJobManager recurringJobManager)
+        {
+            _jobTestService = jobTestService;
+            _backgroundJobClient = backgroundJobClient;
+            _recurringJobManager = recurringJobManager;
+        }
+
+        [HttpGet("FireAndForgetJob")]
+        public IActionResult CreateFireAndForgetJob()
+        {
+            _backgroundJobClient.Enqueue(() => _jobTestService.FireAndForgetJob());
+            return Ok();
+        }
+
+        [HttpGet("DelayedJob")]
+        public ActionResult CreateDelayedJob()
+        {
+            _backgroundJobClient.Schedule(() => _jobTestService.DelayedJob(), TimeSpan.FromSeconds(20));
+            return Ok();
+        }
+
+        [HttpGet("RecurringJob")]
+        public ActionResult CreateRecurringJob()
+        {
+            _recurringJobManager.AddOrUpdate("jobId", () => _jobTestService.RecurringJob(), Cron.Minutely);
+            return Ok();
+        }
+
+        [HttpGet("ContinuationJob")]
+        public ActionResult CreateContinuatuinJob()
+        {
+            var parentJobId = _backgroundJobClient.Enqueue(() => _jobTestService.FireAndForgetJob());
+            _backgroundJobClient.ContinueJobWith(parentJobId, () => _jobTestService.ContinuationJob());
+            return Ok();
+        }
+    }
+}
