@@ -1,28 +1,32 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Order.API.Db;
 using Plain.RabbitMQ;
 using Shared.Models;
 
 namespace Order.API
 {
-    public class CatalogResponseListener : IHostedService
+    public class CatalogResponseListener : BackgroundService
     {
         private ISubscriber _subscriber;
         private readonly IServiceScopeFactory _scopeFactory;
+
         public CatalogResponseListener(ISubscriber subscripber, IServiceScopeFactory scopeFactory)
         {
             this._subscriber = subscripber;
             this._scopeFactory = scopeFactory;
         }
-        public Task StartAsync(CancellationToken cancellationToken)
+
+        protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
+            stoppingToken.ThrowIfCancellationRequested();
             _subscriber.Subscribe(Subscribe);
             return Task.CompletedTask;
         }
 
         private bool Subscribe(string message, IDictionary<string, object> header)
         {
-            var response = JsonConvert.DeserializeObject<CatalogResponse>(message);
+            var response = JsonConvert.DeserializeObject<CatalogResponse>(message)!;
 
             if (!response.IsSuccess)
             {
@@ -32,16 +36,11 @@ namespace Order.API
 
                     // If transaction is not successful, Remove ordering item
                     var orderItem = _orderingContext.OrderItems.Where(o => o.ProductId == response.CatalogId && o.OrderId == response.OrderId).FirstOrDefault();
-                    _orderingContext.OrderItems.Remove(orderItem);
+                    _orderingContext.OrderItems.Remove(orderItem!);
                     _orderingContext.SaveChanges();
                 }
             }
             return true;
-        }
-
-        public Task StopAsync(CancellationToken cancellationToken)
-        {
-            return Task.CompletedTask;
         }
     }
 }

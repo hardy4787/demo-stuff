@@ -45,9 +45,12 @@ namespace Catalog.API
                     _publisher.Publish(JsonConvert.SerializeObject(
                             new CatalogResponse { OrderId = response.OrderId, CatalogId = response.CatalogId, IsSuccess = true }
                         ), "catalog_response_routingkey", null);
+
+                    Console.WriteLine("kek success");
                 }
                 catch (Exception)
                 {
+                    Console.WriteLine("kek error");
                     _publisher.Publish(JsonConvert.SerializeObject(
                     new CatalogResponse { OrderId = response.OrderId, CatalogId = response.CatalogId, IsSuccess = false }
                 ), "catalog_response_routingkey", null);
