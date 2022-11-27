@@ -1,5 +1,5 @@
 {
-  "FilePath": "c:\\Users\\djbod\\Desktop\\projects\\demo-stuff\\Caching\\CachingWebApi\\CachingWebApi.csproj",
+  "FilePath": "c:\\Users\\djbod\\Desktop\\projects\\demo-stuff\\Caching\\CachingDemo\\CachingExample.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "6.0",
@@ -16295,7 +16295,7 @@
     ],
     "CSharpLanguageVersion": 1000
   },
-  "RootNamespace": "CachingWebApi",
+  "RootNamespace": "CachingExample",
   "Documents": [],
   "SerializationFormat": "0.2"
 }
