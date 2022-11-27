@@ -1,0 +1,12 @@
+C:\Users\djbod\Desktop\projects\demo-stuff\patterns\ProxyPattern.Library\bin\Debug\net6.0\ProxyPattern.Library.deps.json
+C:\Users\djbod\Desktop\projects\demo-stuff\patterns\ProxyPattern.Library\bin\Debug\net6.0\ProxyPattern.Library.dll
+C:\Users\djbod\Desktop\projects\demo-stuff\patterns\ProxyPattern.Library\bin\Debug\net6.0\ProxyPattern.Library.pdb
+C:\Users\djbod\Desktop\projects\demo-stuff\patterns\ProxyPattern.Library\obj\Debug\net6.0\ProxyPattern.Library.csproj.AssemblyReference.cache
+C:\Users\djbod\Desktop\projects\demo-stuff\patterns\ProxyPattern.Library\obj\Debug\net6.0\ProxyPattern.Library.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\djbod\Desktop\projects\demo-stuff\patterns\ProxyPattern.Library\obj\Debug\net6.0\ProxyPattern.Library.AssemblyInfoInputs.cache
+C:\Users\djbod\Desktop\projects\demo-stuff\patterns\ProxyPattern.Library\obj\Debug\net6.0\ProxyPattern.Library.AssemblyInfo.cs
+C:\Users\djbod\Desktop\projects\demo-stuff\patterns\ProxyPattern.Library\obj\Debug\net6.0\ProxyPattern.Library.csproj.CoreCompileInputs.cache
+C:\Users\djbod\Desktop\projects\demo-stuff\patterns\ProxyPattern.Library\obj\Debug\net6.0\ProxyPattern.Library.dll
+C:\Users\djbod\Desktop\projects\demo-stuff\patterns\ProxyPattern.Library\obj\Debug\net6.0\refint\ProxyPattern.Library.dll
+C:\Users\djbod\Desktop\projects\demo-stuff\patterns\ProxyPattern.Library\obj\Debug\net6.0\ProxyPattern.Library.pdb
+C:\Users\djbod\Desktop\projects\demo-stuff\patterns\ProxyPattern.Library\obj\Debug\net6.0\ref\ProxyPattern.Library.dll
