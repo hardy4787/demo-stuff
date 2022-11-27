@@ -32,6 +32,10 @@ namespace Saga.Orchestrator.Controllers
             {
                 var inventoryClient = _httpClientFactory.CreateClient("Inventory");
                 var inventoryResponse = await inventoryClient.PostAsync("/api/inventory", new StringContent(request, Encoding.UTF8, "application/JSON"));
+                if(inventoryResponse.StatusCode != System.Net.HttpStatusCode.OK)
+                {
+                    throw new Exception(inventoryResponse.ReasonPhrase);
+                }
                 inventoryId = await inventoryResponse.Content.ReadAsStringAsync();
             }
             catch (Exception exception)
